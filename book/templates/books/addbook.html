@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{books.as_p}}
+    <button btn btn-primary>Add Author</button>
+
+</form>
+
+{% endblock %}
