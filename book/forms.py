@@ -4,7 +4,7 @@ from . models import Author, Books
 class mainAuthor(forms.ModelForm):
     class Meta:
         model = Author
-        fields=['name', 'description']
+        fields=['photo','name', 'description']
 
 class BookStore(forms.ModelForm):
     class Meta:
