@@ -1,9 +1,10 @@
 from django.db import models
+from PIL import Image
 
 
 # Create your models here.
 class Author(models.Model):
-    photo=models.ImageField(upload_to='photos/')
+    photo=models.ImageField(upload_to='media/', blank=True, null=True)
     name=models.CharField(max_length=100)
     description = models.TextField()
     

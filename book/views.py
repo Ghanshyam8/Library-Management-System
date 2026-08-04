@@ -17,8 +17,7 @@ def search_books(request):
 
     books = Books.objects.filter(
         Q(title__icontains=query) |
-        Q(author__name__icontains=query)
-    )
+        Q(author__name__icontains=query))  #Q is use because it handle AND logic and OR logic
 
     return render(request, "search_results.html", {
         "books": books,
@@ -41,7 +40,7 @@ def add_author(request):
 def update_author(request, pk):
     author_record=get_object_or_404(Author, id=pk)
     if request.method=="POST":
-        form=mainAuthor(request.POST, instance=author_record)
+        form=mainAuthor(request.POST, request.FILES, instance=author_record)
         if form.is_valid():
             form.save()
             return redirect('home')    
