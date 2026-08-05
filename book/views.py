@@ -16,8 +16,8 @@ def search_books(request):
     query = request.GET.get("q", "")
 
     books = Books.objects.filter(
-        Q(title__icontains=query) |
-        Q(author__name__icontains=query))  #Q is use because it handle AND logic and OR logic
+        Q(title__iexact=query) |
+        Q(author__name__iexact=query))  #Q is use because it handle AND logic and OR logic
 
     return render(request, "search_results.html", {
         "books": books,

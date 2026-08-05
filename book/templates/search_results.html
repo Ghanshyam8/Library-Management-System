@@ -1,13 +1,84 @@
-<h2>Search Results for "{{ query }}"</h2>
+{% extends 'base.html' %}
 
-{% if books %}
-    {% for book in books %}
-        <h4>{{ book.title }}</h4>
-        <p>{{ book.author.name }}</p>
-        <p>{{ book.category }}</p>
-        <p>{{ book.published_date }}</p>
-        <hr>
-    {% endfor %}
-{% else %}
-    <p>No books found.</p>
-{% endif %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">
+        🔍 Search Results
+    </h2>
+
+    <p class="text-center text-muted">
+        Showing results for:
+        <strong>"{{ query }}"</strong>
+    </p>
+
+    {% if books %}
+
+    <div class="row g-4 mt-3">
+
+        {% for book in books %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card shadow-sm border-0 h-100">
+
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">{{ book.title }}</h5>
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        <strong>Author:</strong>
+                        {{ book.author.name }}
+                    </p>
+
+                    <p>
+                        <strong>Category:</strong>
+                        {{ book.category }}
+                    </p>
+
+                    <p>
+                        <strong>Published:</strong>
+                        {{ book.published_date }}
+                    </p>
+
+                    <p>
+                        <strong>Available:</strong>
+
+                        {% if book.available %}
+                            <span class="badge bg-success">Available</span>
+                        {% else %}
+                            <span class="badge bg-danger">Not Available</span>
+                        {% endif %}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning text-center mt-5">
+        <h4>No books found 📚</h4>
+        <p>Try searching with a different title or author.</p>
+    </div>
+
+    {% endif %}
+
+    <div class="text-center mt-5">
+        <a href="{% url 'home' %}" class="btn btn-primary">
+            ← Back to Home
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
