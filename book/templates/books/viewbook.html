@@ -1,7 +1,70 @@
-<form method="GET">
-    {{book.author}} <br>
-    {{book.title}} <br>
-    {{book.category}} <br>
-    {{book.published_date}} <br>
-    {{book.available}} <br>
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow border-0 rounded-4">
+
+                <div class="card-header bg-success text-white text-center">
+                    <h3 class="mb-0">📖 Book Details</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <table class="table table-bordered">
+
+                        <tr>
+                            <th>Author</th>
+                            <td>{{ book.author }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ book.title }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Category</th>
+                            <td>{{ book.category }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Published Date</th>
+                            <td>{{ book.published_date }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Available</th>
+                            <td>
+                                {% if book.available %}
+                                    <span class="badge bg-success">Available</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Not Available</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'home' %}" class="btn btn-secondary">
+                            ← Back
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
